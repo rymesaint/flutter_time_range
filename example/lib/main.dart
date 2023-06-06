@@ -37,14 +37,14 @@ class MyAppState extends State<MyApp> {
                     child: Text("Show Dialog 24 Hours"),
                     onPressed: () {
                       showTimeRangePicker(
-                          _navigatorKey.currentState.overlay.context);
+                          _navigatorKey.currentState!.overlay!.context);
                     },
                   ),
                   TextButton(
                     child: Text("Show Dialog 12 Hours"),
                     onPressed: () {
                       showTimeRangePicker12Hour(
-                          _navigatorKey.currentState.overlay.context);
+                          _navigatorKey.currentState!.overlay!.context);
                     },
                   ),
                 ],
@@ -76,7 +76,7 @@ class MyAppState extends State<MyApp> {
               iconSelect: Icon(Icons.check, size: 12),
               separatorStyle: TextStyle(color: Colors.grey[900], fontSize: 30),
               onSelect: (from, to) {
-                _messangerKey.currentState.showSnackBar(
+                _messangerKey.currentState?.showSnackBar(
                     SnackBar(content: Text("From : $from, To : $to")));
                 Navigator.pop(context);
               },
@@ -108,13 +108,13 @@ class MyAppState extends State<MyApp> {
               iconNext: Icon(Icons.arrow_forward, size: 12),
               iconBack: Icon(Icons.arrow_back, size: 12),
               iconSelect: Icon(Icons.check, size: 12),
-              inactiveBgColor: Colors.grey[800],
+              inactiveBgColor: Colors.grey.shade800,
               timeContainerStyle: BoxDecoration(
                   color: Colors.grey[800],
                   borderRadius: BorderRadius.circular(7)),
               separatorStyle: TextStyle(color: Colors.grey[900], fontSize: 30),
               onSelect: (from, to) {
-                _messangerKey.currentState.showSnackBar(
+                _messangerKey.currentState?.showSnackBar(
                     SnackBar(content: Text("From : $from, To : $to")));
                 Navigator.pop(context);
               },
