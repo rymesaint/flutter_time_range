@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-typedef onSelectCallback = void Function(TimeOfDay from, TimeOfDay to);
-typedef onCancelCallback = void Function();
+typedef OnSelectCallback = void Function(TimeOfDay from, TimeOfDay to);
+typedef OnCancelCallback = void Function();
 
 class TimeRangePicker extends StatefulWidget {
   /// Initial value for first hour
@@ -22,10 +22,10 @@ class TimeRangePicker extends StatefulWidget {
   final int? initialToMinutes;
 
   /// Callback which called when select button clicked / tapped
-  final onSelectCallback? onSelect;
+  final OnSelectCallback? onSelect;
 
   /// Callback which called when cancel button clicked / tapped
-  final onCancelCallback? onCancel;
+  final OnCancelCallback? onCancel;
 
   /// Caption for first tab
   /// default was "From"
@@ -70,7 +70,7 @@ class TimeRangePicker extends StatefulWidget {
 
   /// Background color for active AM-PM toggle
   /// default was blue accent
-  final Color activeBgColor;
+  final List<Color> activeBgColor;
 
   /// Background color for inactive AM-PM toggle
   /// default was grey
@@ -139,7 +139,7 @@ class TimeRangePicker extends StatefulWidget {
       this.timeContainerStyle,
       this.editable = true,
       this.is24Format = true,
-      this.activeBgColor = Colors.blueAccent,
+      this.activeBgColor = const [Colors.blueAccent],
       this.activeFgColor = Colors.white,
       this.inactiveBgColor = Colors.grey,
       this.inactiveFgColor = Colors.white,
@@ -178,8 +178,8 @@ class _TimeRangePickerState extends State<TimeRangePicker>
   var isEdit = List<bool>.empty(growable: true);
   var textControllers = List<TextEditingController>.empty(growable: true);
   var textFocus = List<FocusNode>.empty(growable: true);
-  var fromIndex = 0;
-  var toIndex = 0;
+  int? fromIndex = 0;
+  int? toIndex = 0;
 
   @override
   void initState() {
@@ -303,7 +303,7 @@ class _TimeRangePickerState extends State<TimeRangePicker>
                                     inactiveFgColor: widget.inactiveFgColor,
                                     labels: ['AM', 'PM'],
                                     initialLabelIndex: fromIndex,
-                                    onToggle: (index) {
+                                    onToggle: (int? index) {
                                       fromIndex = index;
                                     },
                                   ),
